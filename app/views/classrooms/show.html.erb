@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listes des El&eacute;ves</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Date de Naissance</th>
+      <th>Classes</th>
+      <th>Statut</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.nom %></td>
+        <td><%= student.prenom %></td>
+        <td><%= student.dob %></td>
+        <td><%= student.classroom.nom %></td>
+        <td><%= student.statut %></td>
+        <td><%= link_to 'Voir', student %></td>
+        <td><%= link_to 'Modifier', edit_student_path(student) %></td>
+        <td><%= link_to 'Supprimer', student, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if @students.empty? %>
+la liste est vide pour le moment
+<% end %>

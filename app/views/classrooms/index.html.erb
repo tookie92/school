@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+<% if current_user.role_id == 1 %>
+<h1>Liste des classes</h1>
+<% if can? :manage, @classroom %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @classrooms.each do |classroom| %>
+      <tr>
+        <td><%= classroom.nom %></td>
+        <td><%= link_to 'Voir', classroom %></td>
+        <td><%= link_to 'Modifier', edit_classroom_path(classroom) %></td>
+        <td><%= link_to 'Supprimer', classroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<br>
+
+<%= link_to 'Nouvelle classe', new_classroom_path %>
+<% else %>
+<h1> Pas possible </h1>
+
+<% end %>

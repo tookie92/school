@@ -1,0 +1,30 @@
+<h1>Liste des etudiants officiel</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Date de Naissance</th>
+      <th>Classe</th>
+      <th>Inscris par</th>
+      <th>Status</th>
+      <th colspan="3"> Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.nom %></td>
+        <td><%= student.prenom %></td>
+        <td><%= student.dob %></td>
+        <td><%= student.classroom.nom %></td>
+        <td><%= student.user.email %></td>
+        <td><%= student.statut %></td>
+        <td><%= link_to 'Voir', student %></td>
+        <td><%= link_to 'Modifier', edit_student_path(student) %></td>
+        <td><%= link_to 'Supprimer', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
